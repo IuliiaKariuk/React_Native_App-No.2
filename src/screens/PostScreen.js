@@ -9,6 +9,10 @@ return(
 )
 }
 
+PostScreen.navigationOptions = {
+    headerTitle: 'Post'
+}
+
 const styles = StyleSheet.create({
     center: {
         flex: 1,
