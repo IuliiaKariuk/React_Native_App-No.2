@@ -4,7 +4,7 @@ import {View, StyleSheet, Text} from 'react-native';
 export const MainScreen = ({}) => {
 return(
     <View style = {styles.center}>
-        <Text></Text>
+        <Text>MainScreen</Text>
     </View>
 )
 }
