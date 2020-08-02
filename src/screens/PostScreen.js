@@ -10,7 +10,11 @@ return(
 }
 
 PostScreen.navigationOptions = {
-    headerTitle: 'Post'
+    headerTitle: 'Post',
+    headerStyle: {
+        backgroundColor: 'red'
+    },
+    headerTintColor: 'white'
 }
 
 const styles = StyleSheet.create({
