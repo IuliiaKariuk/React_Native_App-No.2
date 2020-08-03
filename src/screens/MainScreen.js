@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {DATA} from '../data'
 import { Post } from "../components/Post";
 
 export const MainScreen = ({navigation}) => {
-    const goToPost = () => {
-        navigation.navigate('Post')
+    const openPostHandler = post => {
+        navigation.navigate('Post', {postId: post.id, date: post.date})
     }
 return(
     <View style = {styles.wrapper}>
         <FlatList data = {DATA}                                 //відображаю пости з data
         keyExtractor = {post => post.id.toString()}           //в keyExtractor - функція яка говорить звідки брати унікальний ключ для рендерингу списку
-        renderItem = {({item}) => <Post post = {item}/>}/>            
+        renderItem = {({item}) => <Post post = {item} onOpen = {openPostHandler}/>}
+        />            
     </View>
 )
 }
