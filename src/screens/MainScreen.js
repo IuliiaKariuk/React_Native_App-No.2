@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {DATA} from '../data'
 import { Post } from "../components/Post";
-
+import {AppHeaderIcon} from '../components/AppHeaderIcon';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+ 
 export const MainScreen = ({navigation}) => {
     const openPostHandler = post => {
         navigation.navigate('Post', {postId: post.id, date: post.date})
@@ -18,7 +20,12 @@ return(
 }
 
 MainScreen.navigationOptions = {
-    headerTitle: 'Blog'
+    headerTitle: 'Blog',
+    headerRight: () => ( 
+    <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
+        <Item title = 'Take photo' iconName = 'ios-camera' onPress = {() => console.log('Photo is pressed')}/>            
+    </HeaderButtons>             //title = 'Take photo' не відображається, лце лише юнік кі
+)
 }
 
 const styles = StyleSheet.create({
