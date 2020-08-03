@@ -21,14 +21,16 @@ const navigatorOptions = {
     }                              
 }
 
-const PostNavigator = createStackNavigator({
+const PostNavigator = createStackNavigator(
+    {
     Main: MainScreen,
     Post: PostScreen
 }, navigatorOptions
 ) 
 
 
-const BookedNavigator = createStackNavigator({
+const BookedNavigator = createStackNavigator(
+    {
     Booked: BookedScreen,
     Post: PostScreen
 },
@@ -55,15 +57,29 @@ const BottomNavigator = createBottomTabNavigator({
     }
 )
 
+const AboutNavigator = createStackNavigator(
+    {
+    About: AboutScreen
+    },
+    navigatorOptions
+)
+
+const CreateNavigator = createStackNavigator(
+    {
+        Create: CreateScreen
+    },
+    navigatorOptions
+)
+
 const MainNavigator = createDrawerNavigator({
     PostTabs: {
         screen: BottomNavigator
     },
     About: {
-        screen: AboutScreen
+        screen: AboutNavigator
     },
     Create: {
-        screen: CreateScreen
+        screen: CreateNavigator
     }
 })
 

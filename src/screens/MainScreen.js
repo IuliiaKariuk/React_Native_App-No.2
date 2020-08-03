@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {DATA} from '../data'
 import { Post } from "../components/Post";
 import {AppHeaderIcon} from '../components/AppHeaderIcon';
@@ -23,7 +23,7 @@ MainScreen.navigationOptions = ({navigation}) => ({                             
     headerTitle: 'Blog',
     headerRight: () => ( 
     <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take photo' iconName = 'ios-camera' onPress = {() => console.log('Photo is pressed')}/>            
+        <Item title = 'Take photo' iconName = 'ios-camera' onPress = {() => navigation.push('Create')}/>            
     </HeaderButtons>             //title = 'Take photo' не відображається, лише юнік кі
 ),
 headerLeft: () => ( 
