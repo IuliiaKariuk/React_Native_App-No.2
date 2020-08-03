@@ -71,8 +71,9 @@ const CreateNavigator = createStackNavigator(
     navigatorOptions
 )
 
-const MainNavigator = createDrawerNavigator({
-    PostTabs: {
+const MainNavigator = createDrawerNavigator(
+    {
+    Main: {
         screen: BottomNavigator
     },
     About: {
@@ -81,6 +82,16 @@ const MainNavigator = createDrawerNavigator({
     Create: {
         screen: CreateNavigator
     }
-})
+},
+    {
+    contentOptions: {
+            activeTintColor: THEME.MAIN_COLOR,
+            labelStyle: {
+                fontFamily: 'open-bold',
+                fontWeight: 'normal'
+            }
+        }
+    }
+    )
 
 export const AppNavigation = createAppContainer(MainNavigator)

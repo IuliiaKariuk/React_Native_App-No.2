@@ -19,19 +19,14 @@ return(
 )
 }
 
-BookedScreen.navigationOptions = {
+BookedScreen.navigationOptions = ({navigation}) => ({
     headerTitle: 'Booked',
-    headerRight: () => ( 
-    <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take photo' iconName = 'ios-camera' onPress = {() => console.log('Photo is pressed')}/>            
-    </HeaderButtons>             //title = 'Take photo' не відображається, лише юнік кі
-),
 headerLeft: () => ( 
     <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => console.log('Drawer is pressed')}/>            
+        <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => navigation.toggleDrawer()}/>            
     </HeaderButtons>             
 )
-}
+})
 
 const styles = StyleSheet.create({
     wrapper: {
