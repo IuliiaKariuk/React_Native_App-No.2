@@ -7,7 +7,7 @@ import {Ionicons} from '@expo/vector-icons'
 import {THEME} from '../theme';
 import {Platform} from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {BookedScreen} from '../screens/BookmarkedScreen'
+import {BookedScreen} from '../screens/BookedScreen'
 
 const PostNavigator = createStackNavigator({
     Main: MainScreen,
