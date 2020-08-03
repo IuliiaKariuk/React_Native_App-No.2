@@ -7,36 +7,33 @@ import {Ionicons} from '@expo/vector-icons'
 import {THEME} from '../theme';
 import {Platform} from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {BookedScreen} from '../screens/BookedScreen'
+import {BookedScreen} from '../screens/BookedScreen';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {AboutScreen} from '../screens/AboutScreen';
+import {CreateScreen} from '../screens/CreateScreen';
 
-const PostNavigator = createStackNavigator({
-    Main: MainScreen,
-    Post: {
-        screen: PostScreen
-    }
-}, 
-{
-        initialRouteName: 'Main',               //параметр для початкового скріна
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : '#fff'
-            },
-            headerTintColor: Platform.OS === "android" ? '#fff' : THEME.MAIN_COLOR
-        }                              
-    })
-
-const BookedNavigator = createStackNavigator({
-    Booked: BookedScreen,
-    Post: PostScreen
-},
-{
+const navigatorOptions = {
     defaultNavigationOptions: {
         headerStyle: {
             backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : '#fff'
         },
         headerTintColor: Platform.OS === "android" ? '#fff' : THEME.MAIN_COLOR
     }                              
-})
+}
+
+const PostNavigator = createStackNavigator({
+    Main: MainScreen,
+    Post: PostScreen
+}, navigatorOptions
+) 
+
+
+const BookedNavigator = createStackNavigator({
+    Booked: BookedScreen,
+    Post: PostScreen
+},
+navigatorOptions
+)
 
 const BottomNavigator = createBottomTabNavigator({
     Post: {
@@ -58,4 +55,16 @@ const BottomNavigator = createBottomTabNavigator({
     }
 )
 
-export const AppNavigation = createAppContainer(BottomNavigator)
+const MainNavigator = createDrawerNavigator({
+    PostTabs: {
+        screen: BottomNavigator
+    },
+    About: {
+        screen: AboutScreen
+    },
+    Create: {
+        screen: CreateScreen
+    }
+})
+
+export const AppNavigation = createAppContainer(MainNavigator)

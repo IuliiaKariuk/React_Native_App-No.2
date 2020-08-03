@@ -19,7 +19,7 @@ return(
 )
 }
 
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({navigation}) => ({                                  //перетворила об'єкт в функцію щоб передати onPress = {() => navigation.toggleDrawer()}
     headerTitle: 'Blog',
     headerRight: () => ( 
     <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
@@ -28,10 +28,10 @@ MainScreen.navigationOptions = {
 ),
 headerLeft: () => ( 
     <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => console.log('Drawer is pressed')}/>            
+        <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => navigation.toggleDrawer()}/>            
     </HeaderButtons>             
 )
-}
+})
 
 const styles = StyleSheet.create({
     wrapper: {
