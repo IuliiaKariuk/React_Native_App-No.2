@@ -1,22 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
 import {DATA} from '../data'
-import { Post } from "../components/Post";
 import {AppHeaderIcon} from '../components/AppHeaderIcon';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import { PostList } from '../components/PostList';
  
 export const MainScreen = ({navigation}) => {
     const openPostHandler = post => {
         navigation.navigate('Post', {postId: post.id, date: post.date})
     }
-return(
-    <View style = {styles.wrapper}>
-        <FlatList data = {DATA}                                 //відображаю пости з data
-        keyExtractor = {post => post.id.toString()}           //в keyExtractor - функція яка говорить звідки брати унікальний ключ для рендерингу списку
-        renderItem = {({item}) => <Post post = {item} onOpen = {openPostHandler}/>}
-        />            
-    </View>
-)
+return <PostList data = {DATA} onOpen = {openPostHandler}/>
 }
 
 MainScreen.navigationOptions = ({navigation}) => ({                                  //перетворила об'єкт в функцію щоб передати onPress = {() => navigation.toggleDrawer()}
@@ -31,10 +23,4 @@ headerLeft: () => (
         <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => navigation.toggleDrawer()}/>            
     </HeaderButtons>             
 )
-})
-
-const styles = StyleSheet.create({
-    wrapper: {
-        padding: 10
-    }
 })
