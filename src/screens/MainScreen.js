@@ -1,26 +1,48 @@
-import React from 'react';
-import {DATA} from '../data'
-import {AppHeaderIcon} from '../components/AppHeaderIcon';
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-import { PostList } from '../components/PostList';
- 
-export const MainScreen = ({navigation}) => {
-    const openPostHandler = post => {
-        navigation.navigate('Post', {postId: post.id, date: post.date})
-    }
-return <PostList data = {DATA} onOpen = {openPostHandler}/>
+import React, { useEffect } from 'react'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
+import { PostList } from '../components/PostList'
+import { loadPosts } from '../store/actions/post'
+
+export const MainScreen = ({ navigation }) => {
+  const openPostHandler = post => {
+    navigation.navigate('Post', {
+      postId: post.id,
+      date: post.date,
+      booked: post.booked
+    })
+  }
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadPosts())
+  }, [dispatch])
+
+  const allPosts = useSelector(state => state.post.allPosts)
+
+  return <PostList data={allPosts} onOpen={openPostHandler} />
 }
 
-MainScreen.navigationOptions = ({navigation}) => ({                                  //перетворила об'єкт в функцію щоб передати onPress = {() => navigation.toggleDrawer()}
-    headerTitle: 'Blog',
-    headerRight: () => ( 
-    <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take photo' iconName = 'ios-camera' onPress = {() => navigation.push('Create')}/>            
-    </HeaderButtons>             //title = 'Take photo' не відображається, лише юнік кі
-),
-headerLeft: () => ( 
-    <HeaderButtons HeaderButtonComponent = {AppHeaderIcon}>            
-        <Item title = 'Take drawer' iconName = 'ios-menu' onPress = {() => navigation.toggleDrawer()}/>            
-    </HeaderButtons>             
-)
+MainScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: 'Мой блог',
+  headerRight: () => (
+    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title='Take photo'
+        iconName='ios-camera'
+        onPress={() => navigation.push('Create')}
+      />
+    </HeaderButtons>
+  ),
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title='Toggle Drawer'
+        iconName='ios-menu'
+        onPress={() => navigation.toggleDrawer()}
+      />
+    </HeaderButtons>
+  )
 })
