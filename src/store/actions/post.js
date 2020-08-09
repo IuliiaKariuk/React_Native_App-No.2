@@ -7,3 +7,11 @@ export const loadPosts = () => {
     payload: DATA
   }
 }
+
+
+export const toggleBooked = id => {
+  return {
+    type: 'TOGGLE_BOOKED',
+    payload: id
+  }
+}
